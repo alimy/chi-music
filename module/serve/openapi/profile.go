@@ -1,6 +1,7 @@
 package openapi
 
 import (
+	"github.com/alimy/chi-music/models/core"
 	"github.com/alimy/mir"
 	"github.com/unisx/logus"
 	"net/http"
@@ -9,6 +10,8 @@ import (
 type profile struct {
 	group      mir.Group `mir:"v1"`
 	getAppInfo mir.Get   `mir:"/appinfo"`
+
+	*core.Context
 }
 
 // GetAppInfo GET handler of "/appinfo/"

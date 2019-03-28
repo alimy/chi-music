@@ -1,16 +1,16 @@
-package models
+package model
 
 import "net/http"
 
 // Album indicate album info
 type Album struct {
-	Id          string `json:"id,omitempty"`
+	Id          int64  `json:"id,omitempty" db:"id"`
 	Title       string `json:"title"`
 	Artist      string `json:"artist"`
-	ReleaseYear string `json:"releaseYear"`
+	ReleaseYear string `json:"releaseYear" db:"release_year"`
 	Genre       string `json:"genre"`
-	TrackCount  int    `json:"-"`
-	AlbumId     string `json:"albumId,omitempty"`
+	TrackCount  int    `json:"-" db:"-"`
+	AlbumId     int64  `json:"albumId,omitempty" db:"-"`
 }
 
 // Albums indicate album slice
