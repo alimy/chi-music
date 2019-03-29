@@ -37,8 +37,8 @@ func (p *portalAssets) HeadStaticAssets(w http.ResponseWriter, r *http.Request) 
 	p.staticHandler.ServeHTTP(w, r)
 }
 
-// mirPortal return a portal mir entry
-func mirPortal() interface{} {
+// MirPortal return a portal mir entry
+func MirPortal() interface{} {
 	assetFile := dist.AssetFile()
 	return &portalAssets{
 		mainHandler:   http.StripPrefix("/", http.FileServer(assetFile)),

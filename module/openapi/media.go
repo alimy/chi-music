@@ -12,7 +12,7 @@ import (
 	"strconv"
 )
 
-type media struct {
+type Media struct {
 	group            mir.Group  `mir:"v1"`
 	getAlbums        mir.Get    `mir:"/albums"`
 	createAlbums     mir.Put    `mir:"/albums"`
@@ -24,12 +24,12 @@ type media struct {
 }
 
 // GetAlbums GET handler of "/albums/"
-func (m *media) GetAlbums(w http.ResponseWriter, r *http.Request) {
+func (m *Media) GetAlbums(w http.ResponseWriter, r *http.Request) {
 	m.Retrieve(w, r, core.RdsMainPage, m.Repo.GetMainPage)
 }
 
 // CreateAlbums PUT handler of "/albums/"
-func (m *media) CreateAlbums(w http.ResponseWriter, r *http.Request) {
+func (m *Media) CreateAlbums(w http.ResponseWriter, r *http.Request) {
 	defer r.Body.Close()
 
 	album := &model.Album{}
@@ -47,7 +47,7 @@ func (m *media) CreateAlbums(w http.ResponseWriter, r *http.Request) {
 }
 
 // UpdateAlbums POST handler of "/albums/"
-func (m *media) UpdateAlbums(w http.ResponseWriter, r *http.Request) {
+func (m *Media) UpdateAlbums(w http.ResponseWriter, r *http.Request) {
 	defer r.Body.Close()
 
 	album := &model.Album{}
@@ -77,7 +77,7 @@ func (m *media) UpdateAlbums(w http.ResponseWriter, r *http.Request) {
 }
 
 // GetAlbumsById GET handler of "/albums/{albumId}"
-func (m *media) GetAlbumsById(w http.ResponseWriter, r *http.Request) {
+func (m *Media) GetAlbumsById(w http.ResponseWriter, r *http.Request) {
 	albumId := chi.URLParam(r, "albumId")
 	id, err := strconv.ParseInt(albumId, 10, 0)
 	if err != nil {
@@ -101,7 +101,7 @@ func (m *media) GetAlbumsById(w http.ResponseWriter, r *http.Request) {
 }
 
 // DeleteAlbumsById DELETE handler of "/albums/{albumId}"
-func (m *media) DeleteAlbumsById(w http.ResponseWriter, r *http.Request) {
+func (m *Media) DeleteAlbumsById(w http.ResponseWriter, r *http.Request) {
 	albumId := chi.URLParam(r, "albumId")
 	id, err := strconv.ParseInt(albumId, 10, 0)
 	if err != nil {

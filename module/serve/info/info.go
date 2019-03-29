@@ -1,25 +1,21 @@
-package openapi
+package info
 
 import (
 	"github.com/alimy/chi-music/models"
-	"net/http"
+	"github.com/alimy/chi-music/module/openapi"
 )
 
 // MirEntries get all entries that used to register to Mir
+// Notice: this func must call after models.InitWith(...)
 func MirEntries() []interface{} {
 	ctx := models.NewContext()
 
 	entries := []interface{}{
-		&profile{Context: ctx},
-		&media{Context: ctx},
+		&openapi.Profile{Context: ctx},
+		&openapi.Media{Context: ctx},
 	}
-	if portal := mirPortal(); portal != nil {
+	if portal := openapi.MirPortal(); portal != nil {
 		entries = append(entries, portal)
 	}
 	return entries
-}
-
-func httpResponse(w http.ResponseWriter, status int, msg string) {
-	w.WriteHeader(status)
-	w.Write([]byte(msg))
 }

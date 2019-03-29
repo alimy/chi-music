@@ -7,7 +7,7 @@ import (
 	"net/http"
 )
 
-type profile struct {
+type Profile struct {
 	group      mir.Group `mir:"v1"`
 	getAppInfo mir.Get   `mir:"/appinfo"`
 
@@ -15,7 +15,7 @@ type profile struct {
 }
 
 // GetAppInfo GET handler of "/appinfo/"
-func (p *profile) GetAppInfo(w http.ResponseWriter, r *http.Request) {
+func (p *Profile) GetAppInfo(w http.ResponseWriter, r *http.Request) {
 	// TODO
 	logus.Debug("get application information")
 	httpResponse(w, http.StatusOK, "get application information")

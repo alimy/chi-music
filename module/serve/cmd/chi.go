@@ -1,7 +1,7 @@
 package cmd
 
 import (
-	"github.com/alimy/chi-music/module/serve/openapi"
+	"github.com/alimy/chi-music/module/serve/info"
 	"github.com/go-chi/chi"
 	"github.com/go-chi/chi/middleware"
 	"github.com/go-chi/render"
@@ -22,7 +22,7 @@ func newChi() chi.Router {
 	r.Use(render.SetContentType(render.ContentTypeJSON))
 
 	// Register API
-	entries := openapi.MirEntries()
+	entries := info.MirEntries()
 	if err := mirE.Register(r, entries...); err != nil {
 		logus.F("mir register", err)
 	}
