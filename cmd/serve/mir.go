@@ -5,7 +5,7 @@ import (
 	"github.com/alimy/chi-music/pkg/openapi"
 )
 
-// MirEntries get all entries that used to register to Mir
+// mirEntries get all entries that used to register to Mir
 // Notice: this func must call after models.InitWith(...)
 func mirEntries() []interface{} {
 	ctx := models.NewContext()

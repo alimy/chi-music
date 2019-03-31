@@ -9,22 +9,18 @@ import (
 )
 
 type portalAssets struct {
-	mainHandler      http.Handler
-	staticHandler    http.Handler
+	index            mir.Get  `mir:/index.html#GetMainAssets`
 	getMainAssets    mir.Get  `mir:"/"`
-	headMainAssets   mir.Head `mir:"/"`
 	getStaticAssets  mir.Get  `mir:"/static/*"`
 	headStaticAssets mir.Head `mir:"/static/*"`
+
+	staticHandler http.Handler
 }
 
 // GetMainAssets GET handler of "/"
 func (p *portalAssets) GetMainAssets(w http.ResponseWriter, r *http.Request) {
-	p.mainHandler.ServeHTTP(w, r)
-}
-
-// HeadMainAssets HEAD handler of "/"
-func (p *portalAssets) HeadMainAssets(w http.ResponseWriter, r *http.Request) {
-	p.mainHandler.ServeHTTP(w, r)
+	w.WriteHeader(http.StatusOK)
+	w.Write(dist.MustAsset("index.html"))
 }
 
 // GetStaticAssets GET handler of "/static/*filepath"
@@ -41,7 +37,6 @@ func (p *portalAssets) HeadStaticAssets(w http.ResponseWriter, r *http.Request) 
 func MirPortal() interface{} {
 	assetFile := dist.AssetFile()
 	return &portalAssets{
-		mainHandler:   http.StripPrefix("/", http.FileServer(assetFile)),
 		staticHandler: http.StripPrefix("/static", http.FileServer(assetFile)),
 	}
 }
