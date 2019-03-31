@@ -1,8 +1,8 @@
-package cmd
+package serve
 
 import (
 	"context"
-	"github.com/alimy/chi-music/cmd"
+	"github.com/alimy/chi-music/cmd/core"
 	"github.com/alimy/chi-music/models"
 	"github.com/alimy/chi-music/models/cache"
 	"github.com/alimy/chi-music/models/model"
@@ -47,7 +47,7 @@ func init() {
 	serveCmd.Flags().BoolVarP(&inDebug, "debug", "d", false, "whether in debug mode")
 
 	// Register serveCmd as sub-command
-	cmd.Register(serveCmd)
+	core.Register(serveCmd)
 }
 
 func serveRun(cmd *cobra.Command, args []string) {

@@ -14,23 +14,23 @@
 package main
 
 import (
-	"github.com/alimy/chi-music/cmd"
+	"github.com/alimy/chi-music/cmd/core"
 	"github.com/unisx/logus"
 
-	_ "github.com/alimy/chi-music/module/serve/cmd"
-	_ "github.com/alimy/chi-music/version"
+	_ "github.com/alimy/chi-music/cmd/serve"
+	_ "github.com/alimy/chi-music/cmd/version"
 )
 
 func main() {
 	defer logus.Sync()
 
 	// Setup root cli command of application
-	cmd.Setup(
+	core.Setup(
 		"chi-music",                          // command name
 		"music information service",          // command short describe
 		"music information provider service", // command long describe
 	)
 
 	// Execute start application
-	cmd.Execute()
+	core.Execute()
 }
